@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl"><head><meta charset="utf-8"><title>تكفيتا</title>
+<link rel="manifest" href="manifest.json">
+<meta name="theme-color" content="#8f3547">
+<link rel="apple-touch-icon" href="icon-192.png">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600&display=swap" rel="stylesheet">
 <style>
@@ -42,7 +45,7 @@ import {getAuth,signInWithEmailAndPassword,createUserWithEmailAndPassword,onAuth
 import {getFirestore,collection,addDoc,query,orderBy,onSnapshot,serverTimestamp,doc,setDoc} from "https://www.gstatic.com/firebasejs/13.2.0/firebase-firestore.js";
 const cfg={apiKey:"AIzaSyCRI3e-A43I6qfX2_avD48VMhusHPzXHak",authDomain:"takfita-92e8d.firebaseapp.com",projectId:"takfita-92e8d",storageBucket:"takfita-92e8d.firebasestorage.app",messagingSenderId:"11900750702",appId:"1:11900750702:web:aff7dd92a8e2cc2ace4f7f"};
 const fb=initializeApp(cfg),auth=getAuth(fb),db=getFirestore(fb);
-const AV="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 96 96'%3E%3Crect width='96' height='96' fill='%238f3547'/%3E%3Ctext x='48' y='64' font-size='52' text-anchor='middle'%3E%F0%9F%92%AC%3C/text%3E%3C/svg%3E",app=document.getElementById('app');
+const AV="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAA4KCw0LCQ4NDA0QDw4RFiQXFhQUFiwgIRokNC43NjMuMjI6QVNGOj1OPjIySGJJTlZYXV5dOEVmbWVabFNbXVn/2wBDAQ8QEBYTFioXFypZOzI7WVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVlZWVn/wAARCABQAFADASIAAhEBAxEB/8QAGwAAAQUBAQAAAAAAAAAAAAAAAgEDBAUGAAf/xAAyEAACAQMCAwYEBQUAAAAAAAABAgADBBESIQUxURMUIkFhcQYjMpFSYrHh8HKBocHR/8QAGAEAAwEBAAAAAAAAAAAAAAAAAAECAwT/xAAfEQEBAAIBBQEBAAAAAAAAAAAAAQIRAxIhMTJRE0H/2gAMAwEAAhEDEQA/AKhRHAIKwiupcZkOshr01zluXPAJxFSvSYZFRCPeRLu87v8AKoAagNzjZZWppeprudRB5Y23gm56umgFeiCM1Ux/UI+rqy6lYMOoOZnu70+zJVSy9cbxoVmtzm3YoRz25w0P0+tQeUBjI9lcd4tg5Zi3I5AGI6ecTed+5DBzFME84LgBGL247KlpRgKjbD09Y6yK4wwzKu4NPvDLTUALt7mNzZXUMim2oLnLMNR2zgdZrOH/AArbGmtS8qmqpXV4TpUCZzhVVaXFqb1tJVsgl+W4I3m0smK2gtqq9oKI1UXxlc42UjqPLMKxkQbr4ctmdxZEpqp6qZRicMPL1yD/AImWYaNaVV01QdJLDfM9Gt7m7qmgWtW5+JqjAEddgJV8Q4Yh+I3ujS1qKStj82SM/YGKX6dnxleEVW+ZTIGBuCJaD1kC0enUvrx6Z8DVCV9RmTicQrq4/WOJgE+U4naN5g1kI7aabN0BMrq9E0relUH1Y8R9ecsiAwIO4OxidmDSKNuMY3jYXHaorkHSQMFp6N8O6X4YNSeI7MMbbbTzoMWGlgBpM03COJLTJpVsmgxHaKM5U/iGIZeGGE3tra1cpSCW4DuTpXPLP+5WcbrYYq1QrSNMqyrzZjyEV+L24YUrPJbSSaj5AVR0zz9pn7q4atUaq5JOfAnQevv5yTu/FVvdRw6nq7T5j5wg3/nvJYOVBOxIg0rXvbuapIJ2z09oTBqLCnV2PkesNteHL+UhECGTBg6iiKIIhCNlIr7u1btS1Mc8nHWFaXCFNRcJWUaSpH1Dyk4gEbxuoKasGKqHY4DY3htFw1eqHEYFiznwpso/E37SbbUO03I055nHL2kXh9AVW7bYovhUGW4JTJVTgDBMi1hb1XZxVCLhECgfcyHd06dRSlQZJHlH6dwlWmSpJI2K9INZFZSvL16RBQ1Q1oVBLPSY4DeY9I4rBhkHIjt0gakyHc7kGQbYkO6E9G/7Ljbi5LvpqSIYiARY20dAK62yfpX+fpmExiAZpMM/Vv8Af9oqjlusdJPCcU6T6vpZ8hestVYuFGCATy6yosG1VgoyFHn13lwD807ch9syL5csQble63XbIMI+1RR+scL5Uk8v1jlyAydcHOJDNTwkDl5QBisdRPlK9QBc5HnmTnIJx1kJj85f7yorD2j/2Q==",app=document.getElementById('app');
 var me={email:'',av:AV},friend='',fav='',rec=null,chunks=[],unsubs=[];
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function toast(t){var e=document.getElementById('toast');e.textContent=t;e.style.display='block';setTimeout(function(){e.style.display='none'},3000)}
@@ -94,6 +97,7 @@ r.ondataavailable=function(e){chunks.push(e.data)};
 r.onstop=function(){clearTimeout(tm);s.getTracks().forEach(function(t){t.stop()});b.classList.remove('rec');rec=null;
 var fr=new FileReader();fr.onload=function(){if(fr.result.length>900000){toast('التسجيل طويل بزاف، قصّرو');return}send({kind:'voice',audio:fr.result})};fr.readAsDataURL(new Blob(chunks,{type:r.mimeType}))};
 r.start();b.classList.add('rec');toast('يسجل... اضغط مرة أخرى للإيقاف (40 ثانية كحد أقصى)')}).catch(function(){toast('لازم تسمح للميكروفون')})}}
+if('serviceWorker' in navigator)navigator.serviceWorker.register('sw.js').catch(function(){});
 onAuthStateChanged(auth,function(u){if(!u){login();return}
 me.email=u.email.toLowerCase();friend=lsGet('tk_friend_'+me.email);friend?chat():askFriend()});
 </script>
